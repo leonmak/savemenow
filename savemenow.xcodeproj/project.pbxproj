@@ -10,7 +10,7 @@
 		13B5C74C87DB6AC2EB2A4B61 /* Pods_savemenowUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD348C4272D8BDAD9FEC8B52 /* Pods_savemenowUITests.framework */; };
 		1DBDD51BFE89987604998701 /* Pods_savemenow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EA518CB19D2F9019533D063 /* Pods_savemenow.framework */; };
 		ABC613F51F6DE38C00804BF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC613F41F6DE38C00804BF3 /* AppDelegate.swift */; };
-		ABC613F71F6DE38C00804BF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC613F61F6DE38C00804BF3 /* ViewController.swift */; };
+		ABC613F71F6DE38C00804BF3 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC613F61F6DE38C00804BF3 /* MapVC.swift */; };
 		ABC613FA1F6DE38C00804BF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABC613F81F6DE38C00804BF3 /* Main.storyboard */; };
 		ABC613FD1F6DE38C00804BF3 /* savemenow.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ABC613FB1F6DE38C00804BF3 /* savemenow.xcdatamodeld */; };
 		ABC613FF1F6DE38C00804BF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABC613FE1F6DE38C00804BF3 /* Assets.xcassets */; };
@@ -44,7 +44,7 @@
 		8EA518CB19D2F9019533D063 /* Pods_savemenow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_savemenow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABC613F11F6DE38C00804BF3 /* savemenow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = savemenow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABC613F41F6DE38C00804BF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ABC613F61F6DE38C00804BF3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ABC613F61F6DE38C00804BF3 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		ABC613F91F6DE38C00804BF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ABC613FC1F6DE38C00804BF3 /* savemenow.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = savemenow.xcdatamodel; sourceTree = "<group>"; };
 		ABC613FE1F6DE38C00804BF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				ABC613F41F6DE38C00804BF3 /* AppDelegate.swift */,
-				ABC613F61F6DE38C00804BF3 /* ViewController.swift */,
+				ABC613F61F6DE38C00804BF3 /* MapVC.swift */,
 				ABC613F81F6DE38C00804BF3 /* Main.storyboard */,
 				ABC613FE1F6DE38C00804BF3 /* Assets.xcassets */,
 				ABC614001F6DE38C00804BF3 /* LaunchScreen.storyboard */,
@@ -245,7 +245,7 @@
 				TargetAttributes = {
 					ABC613F01F6DE38C00804BF3 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = L7EN985RFR;
+						DevelopmentTeam = 8GMX3JSSQ7;
 						ProvisioningStyle = Automatic;
 					};
 					ABC614071F6DE38C00804BF3 = {
@@ -469,7 +469,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABC613F71F6DE38C00804BF3 /* ViewController.swift in Sources */,
+				ABC613F71F6DE38C00804BF3 /* MapVC.swift in Sources */,
 				ABC613F51F6DE38C00804BF3 /* AppDelegate.swift in Sources */,
 				ABC613FD1F6DE38C00804BF3 /* savemenow.xcdatamodeld in Sources */,
 			);
@@ -626,7 +626,7 @@
 			baseConfigurationReference = 34DB36C1F58B2571F02FF5BB /* Pods-savemenow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = L7EN985RFR;
+				DEVELOPMENT_TEAM = 8GMX3JSSQ7;
 				INFOPLIST_FILE = savemenow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mingyiteo.savemenow;
@@ -640,7 +640,7 @@
 			baseConfigurationReference = D054075AFCC9CB2271925DFA /* Pods-savemenow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = L7EN985RFR;
+				DEVELOPMENT_TEAM = 8GMX3JSSQ7;
 				INFOPLIST_FILE = savemenow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mingyiteo.savemenow;
@@ -730,6 +730,7 @@
 				ABC6141E1F6DE38C00804BF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ABC6141F1F6DE38C00804BF3 /* Build configuration list for PBXNativeTarget "savemenowTests" */ = {
 			isa = XCConfigurationList;
@@ -738,6 +739,7 @@
 				ABC614211F6DE38C00804BF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ABC614221F6DE38C00804BF3 /* Build configuration list for PBXNativeTarget "savemenowUITests" */ = {
 			isa = XCConfigurationList;
@@ -746,6 +748,7 @@
 				ABC614241F6DE38C00804BF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
