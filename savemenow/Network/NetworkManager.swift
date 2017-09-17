@@ -51,11 +51,11 @@ class NetworkManager: Network {
         let feature = NetworkManager.sharedInstance.featureTable.createFeature(attributes: featureAttributes, geometry: nil)
 
         //add the feature to the feature table
-        NetworkManager.sharedInstance.featureTable.add(feature) { (error) in
+        NetworkManager.sharedInstance.featureTable.add(feature) { [weak self] (error) in
             if let error = error {
 
             } else {
-                self.applyEdits(completionHandler: completionHandler)
+                self?.featureTable.applyEdits(completion: completionHandler)
             }
         }
 
