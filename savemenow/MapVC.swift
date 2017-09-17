@@ -82,7 +82,7 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
         
         //attributes for the new feature
         let hazard = Hazard(barrier: polygon,
-                            description: "abc", type: "123")
+                            description: "asdasdadasd", type: "123")
         return hazard
     }
 

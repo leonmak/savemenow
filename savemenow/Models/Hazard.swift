@@ -9,13 +9,14 @@
 import ArcGIS
 import Foundation
 
-typealias FeatureAttributes = [String: String]
+typealias FeatureAttributes = [String: Any]
 
 class Hazard {
 
     let barrier: AGSGeometry
     let description: String
     let type: String
+    let date = Date()
 
     init(barrier: AGSGeometry, description: String, type: String) {
         self.barrier = barrier
@@ -26,7 +27,8 @@ class Hazard {
     func getAttributes() -> FeatureAttributes {
         return [
             "description": self.description,
-            "type": self.type
+            "type": self.type,
+            "date": date
         ]
     }
 
