@@ -10,6 +10,7 @@ import Foundation
 import ArcGIS
 
 typealias CompletionHandler = ([AGSFeatureEditResult]?, Error?) -> Void
+typealias QueryCompletionHandler = (AGSFeatureQueryResult?, Error?) -> Void
 typealias RoutingCompletionHandler = (AGSRouteResult?,  Error?) -> Void
 
 protocol Network {
@@ -17,7 +18,7 @@ protocol Network {
     var featureTable: AGSServiceFeatureTable! {get set}
     var featureLayer: AGSFeatureLayer! {get set}
 
-    func getHazards()
+    func getHazards(completionHandler: @escaping QueryCompletionHandler)
 
     func addHazard(hazard: Hazard, completionHandler: @escaping CompletionHandler)
 
@@ -41,8 +42,18 @@ class NetworkManager: Network {
 
     }
 
-    func getHazards() {
+    func getHazards(completionHandler: @escaping QueryCompletionHandler) {
+        var barriers = [AGSPolygonBarrier]()
+        let params = AGSQueryParameters()
+        params.whereClause = "1=1"
+        featureLayer.featureTable?.queryFeatures(with: params) { result, error in
+            if let error = error {
+                completionHandler(nil, error)
+                return
+            }
 
+            completionHandler(result, nil)
+        }
     }
 
     func addHazard(hazard: Hazard, completionHandler: @escaping CompletionHandler) {

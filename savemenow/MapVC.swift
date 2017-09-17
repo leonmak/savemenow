@@ -8,13 +8,16 @@
 
 import UIKit
 import ArcGIS
+import CoreLocation
 import MapKit
 
-class MapVC: UIViewController, AGSGeoViewTouchDelegate {
+class MapVC: UIViewController, AGSGeoViewTouchDelegate, CLLocationManagerDelegate {
 
     @IBOutlet var addHazardButton: UIButton!
     @IBOutlet private var mapView: AGSMapView!
-//    var polygonPoints: [AGSPoint] = []
+    var locationManager = CLLocationManager()
+    private var routeGraphicsOverlay = AGSGraphicsOverlay()
+
 
     private var lastQuery: AGSCancelable!
 
@@ -25,6 +28,8 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
     @IBOutlet weak var redoBBI: UIBarButtonItem!
     @IBOutlet weak var undoBBI: UIBarButtonItem!
     @IBOutlet weak var clearBBI: UIBarButtonItem!
+
+    var myAgsPoint: AGSPoint!
     
     @IBAction func onAddHazard(_ sender: UIButton) {
         if sender.titleLabel?.text == "Done" {
@@ -40,8 +45,12 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
         //instantiate map with a basemap
         let map = AGSMap(basemap: AGSBasemap.streets())
+
+        setupLocation()
+
         //set initial viewpoint
         map.initialViewpoint = AGSViewpoint(center: AGSPoint(x: 544871.19, y: 6806138.66, spatialReference: AGSSpatialReference.webMercator()), scale: 2e6)
 
@@ -55,6 +64,37 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
         
         self.mapView.sketchEditor = self.sketchEditor
         clearSketchEditor()
+
+        getRoute()
+    }
+
+    // SETUP MAP
+    func setupLocation() {
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+            locationManager.requestWhenInUseAuthorization()
+            setupLocation()
+        } else if CLLocationManager.locationServicesEnabled() {
+            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.startUpdatingLocation()
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation:CLLocation = locations[0]
+        let long = userLocation.coordinate.longitude
+        let lat = userLocation.coordinate.latitude
+        updateUserLocation(lat: lat, long: long)
+    }
+
+
+    func updateUserLocation(lat: Double, long: Double) {
+        let coord = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        self.myAgsPoint = AGSPoint(clLocationCoordinate2D: coord)
+        let viewpoint = AGSViewpoint(center: myAgsPoint, scale: 2000)
+        self.mapView.setViewpoint(viewpoint)
     }
 
     // MARK: Sketch Editor
@@ -98,20 +138,37 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
     @IBAction func doneSketching() {
     }
     // MARK: End sketchEditor
-    
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    func applyEdits() {
-        NetworkManager.sharedInstance.featureTable.applyEdits { (featureEditResults: [AGSFeatureEditResult]?, error: Error?) -> Void in
+    func getRoute() {
+        var barriers = [AGSPolygonBarrier]()
+        let hazards = NetworkManager.sharedInstance.getHazards { result, error in
             if let error = error {
-                NSLog(error.localizedDescription)
-            } else {
-                if let featureEditResults = featureEditResults, featureEditResults.count > 0 && featureEditResults[0].completedWithErrors == false {
+                print("Route error!")
+            }
+
+            guard let result = result else {
+                assertionFailure("No results")
+                return
+            }
+
+            for feature in result.featureEnumerator() {
+                guard let feature = feature as? AGSFeature else {
+                    assertionFailure("This feature enumerator does not return features?")
+                    return
                 }
+
+                let polygon = feature.geometry
+                barriers.append(AGSPolygonBarrier(polygon: feature.geometry as! AGSPolygon))
+            }
+
+            let params = AGSRouteParameters()
+            params.setPolygonBarriers(barriers)
+            let start = AGSStop(point: self.myAgsPoint)
+            let end =  AGSStop(point: AGSPoint(x: 544871.19, y: 6806138.66, spatialReference: AGSSpatialReference.webMercator()))
+            params.setStops([start, end])
+            NetworkManager.sharedInstance.getRoute(fromRouteParameters: params) { (result, error) in
+                print(error)
+                print(result)
             }
         }
     }

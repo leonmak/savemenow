@@ -281,7 +281,7 @@
 				TargetAttributes = {
 					ABC613F01F6DE38C00804BF3 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = L7EN985RFR;
+						DevelopmentTeam = 93J5N959FE;
 						ProvisioningStyle = Automatic;
 					};
 					ABC614071F6DE38C00804BF3 = {
@@ -666,7 +666,7 @@
 			baseConfigurationReference = 34DB36C1F58B2571F02FF5BB /* Pods-savemenow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = L7EN985RFR;
+				DEVELOPMENT_TEAM = 93J5N959FE;
 				INFOPLIST_FILE = savemenow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mingyiteo.savemenow;
@@ -680,7 +680,7 @@
 			baseConfigurationReference = D054075AFCC9CB2271925DFA /* Pods-savemenow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = L7EN985RFR;
+				DEVELOPMENT_TEAM = 93J5N959FE;
 				INFOPLIST_FILE = savemenow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mingyiteo.savemenow;
