@@ -49,7 +49,7 @@ class NetworkManager: Network {
     }
 
     func delete(hazard: Hazard, completionHandler: CompletionHandler) {
-
+        
     }
 
     func getRoute() {
