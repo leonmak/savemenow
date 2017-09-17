@@ -9,13 +9,15 @@
 import Foundation
 import ArcGIS
 
+typealias CompletionHandler = (Error?) -> Void
+
 protocol Network {
 
     func getHazards()
 
-    func addHazard()
+    func addHazard(hazard: Hazard, completionHandler: (Error?) -> Void)
 
-    func deleteHazard()
+    func delete(hazard: Hazard, completionHandler: (Error?) -> Void)
 
     func getRoute()
 
@@ -27,12 +29,12 @@ class NetworkManager: Network {
 
     }
 
-    func addHazard() {
-
+    func addHazard(hazard: Hazard, completionHandler: (Error?) -> Void) {
+        <#code#>
     }
 
-    func deleteHazard() {
-
+    func delete(hazard: Hazard, completionHandler: (Error?) -> Void) {
+        <#code#>
     }
 
     func getRoute() {
