@@ -15,9 +15,9 @@ protocol Network {
 
     func getHazards()
 
-    func addHazard(hazard: Hazard, completionHandler: (Error?) -> Void)
+    func addHazard(hazard: Hazard, completionHandler: CompletionHandler)
 
-    func delete(hazard: Hazard, completionHandler: (Error?) -> Void)
+    func delete(hazard: Hazard, completionHandler: CompletionHandler)
 
     func getRoute()
 
@@ -29,11 +29,11 @@ class NetworkManager: Network {
 
     }
 
-    func addHazard(hazard: Hazard, completionHandler: (Error?) -> Void) {
+    func addHazard(hazard: Hazard, completionHandler: CompletionHandler) {
         <#code#>
     }
 
-    func delete(hazard: Hazard, completionHandler: (Error?) -> Void) {
+    func delete(hazard: Hazard, completionHandler: CompletionHandler) {
         <#code#>
     }
 
