@@ -13,11 +13,11 @@ typealias FeatureAttributes = [String: String]
 
 class Hazard {
 
-    let barrier: AGSPolygonBarrier
+    let barrier: AGSGeometry
     let description: String
     let type: String
 
-    init(barrier: AGSPolygonBarrier, description: String, type: String) {
+    init(barrier: AGSGeometry, description: String, type: String) {
         self.barrier = barrier
         self.description = description
         self.type = type
