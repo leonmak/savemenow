@@ -10,13 +10,13 @@
 		13B5C74C87DB6AC2EB2A4B61 /* Pods_savemenowUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD348C4272D8BDAD9FEC8B52 /* Pods_savemenowUITests.framework */; };
 		1DBDD51BFE89987604998701 /* Pods_savemenow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EA518CB19D2F9019533D063 /* Pods_savemenow.framework */; };
 		ABC613F51F6DE38C00804BF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC613F41F6DE38C00804BF3 /* AppDelegate.swift */; };
-		ABC613F71F6DE38C00804BF3 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC613F61F6DE38C00804BF3 /* MapVC.swift */; };
 		ABC613FA1F6DE38C00804BF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABC613F81F6DE38C00804BF3 /* Main.storyboard */; };
 		ABC613FD1F6DE38C00804BF3 /* savemenow.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ABC613FB1F6DE38C00804BF3 /* savemenow.xcdatamodeld */; };
 		ABC613FF1F6DE38C00804BF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABC613FE1F6DE38C00804BF3 /* Assets.xcassets */; };
 		ABC614021F6DE38C00804BF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABC614001F6DE38C00804BF3 /* LaunchScreen.storyboard */; };
 		ABC6140D1F6DE38C00804BF3 /* savemenowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC6140C1F6DE38C00804BF3 /* savemenowTests.swift */; };
 		ABC614181F6DE38C00804BF3 /* savemenowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC614171F6DE38C00804BF3 /* savemenowUITests.swift */; };
+		ABC614261F6E1F1D00804BF3 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC614251F6E1F1D00804BF3 /* MapVC.swift */; };
 		F1E720B31F6E061C0069D0ED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E720B21F6E061C0069D0ED /* NetworkManager.swift */; };
 		FF5955EE71CC28EDE4B24FFE /* Pods_savemenowTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C917BEC1F6B198B5AF6B8D /* Pods_savemenowTests.framework */; };
 /* End PBXBuildFile section */
@@ -45,7 +45,6 @@
 		8EA518CB19D2F9019533D063 /* Pods_savemenow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_savemenow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABC613F11F6DE38C00804BF3 /* savemenow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = savemenow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABC613F41F6DE38C00804BF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ABC613F61F6DE38C00804BF3 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		ABC613F91F6DE38C00804BF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ABC613FC1F6DE38C00804BF3 /* savemenow.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = savemenow.xcdatamodel; sourceTree = "<group>"; };
 		ABC613FE1F6DE38C00804BF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,6 +56,7 @@
 		ABC614131F6DE38C00804BF3 /* savemenowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = savemenowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABC614171F6DE38C00804BF3 /* savemenowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = savemenowUITests.swift; sourceTree = "<group>"; };
 		ABC614191F6DE38C00804BF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABC614251F6E1F1D00804BF3 /* MapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		C3C917BEC1F6B198B5AF6B8D /* Pods_savemenowTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_savemenowTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFAAFFCDB8C237FD83D45DAF /* Pods-savemenowUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-savemenowUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-savemenowUITests/Pods-savemenowUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D054075AFCC9CB2271925DFA /* Pods-savemenow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-savemenow.release.xcconfig"; path = "Pods/Target Support Files/Pods-savemenow/Pods-savemenow.release.xcconfig"; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 			children = (
 				F1E720B41F6E06210069D0ED /* Network */,
 				ABC613F41F6DE38C00804BF3 /* AppDelegate.swift */,
-				ABC613F61F6DE38C00804BF3 /* MapVC.swift */,
+				ABC614251F6E1F1D00804BF3 /* MapVC.swift */,
 				ABC613F81F6DE38C00804BF3 /* Main.storyboard */,
 				ABC613FE1F6DE38C00804BF3 /* Assets.xcassets */,
 				ABC614001F6DE38C00804BF3 /* LaunchScreen.storyboard */,
@@ -256,7 +256,7 @@
 				TargetAttributes = {
 					ABC613F01F6DE38C00804BF3 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 8GMX3JSSQ7;
+						DevelopmentTeam = L7EN985RFR;
 						ProvisioningStyle = Automatic;
 					};
 					ABC614071F6DE38C00804BF3 = {
@@ -480,9 +480,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABC613F71F6DE38C00804BF3 /* MapVC.swift in Sources */,
 				F1E720B31F6E061C0069D0ED /* NetworkManager.swift in Sources */,
-				ABC613F71F6DE38C00804BF3 /* ViewController.swift in Sources */,
+				ABC614261F6E1F1D00804BF3 /* MapVC.swift in Sources */,
 				ABC613F51F6DE38C00804BF3 /* AppDelegate.swift in Sources */,
 				ABC613FD1F6DE38C00804BF3 /* savemenow.xcdatamodeld in Sources */,
 			);
@@ -639,7 +638,7 @@
 			baseConfigurationReference = 34DB36C1F58B2571F02FF5BB /* Pods-savemenow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8GMX3JSSQ7;
+				DEVELOPMENT_TEAM = L7EN985RFR;
 				INFOPLIST_FILE = savemenow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mingyiteo.savemenow;
@@ -653,7 +652,7 @@
 			baseConfigurationReference = D054075AFCC9CB2271925DFA /* Pods-savemenow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8GMX3JSSQ7;
+				DEVELOPMENT_TEAM = L7EN985RFR;
 				INFOPLIST_FILE = savemenow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mingyiteo.savemenow;

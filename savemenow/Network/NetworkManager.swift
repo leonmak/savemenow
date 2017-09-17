@@ -24,19 +24,19 @@ protocol Network {
 class NetworkManager: Network {
 
     func getHazards() {
-        <#code#>
+
     }
 
     func addHazard() {
-        <#code#>
+
     }
 
     func deleteHazard() {
-        <#code#>
+
     }
 
     func getRoute() {
-        <#code#>
+
     }
 
 }
