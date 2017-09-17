@@ -56,7 +56,7 @@ class NetworkManager: Network {
         //add the feature to the feature table
         NetworkManager.sharedInstance.featureTable.add(feature) { [weak self] (error) in
             if let error = error {
-
+                NSLog(error.localizedDescription)
             } else {
                 self?.featureTable.applyEdits(completion: completionHandler)
             }

@@ -14,36 +14,29 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
 
     @IBOutlet var addHazardButton: UIButton!
     @IBOutlet private var mapView: AGSMapView!
-    var polygonPoints: [AGSPoint] = []
+//    var polygonPoints: [AGSPoint] = []
 
     private var lastQuery: AGSCancelable!
 
+    private var sketchEditor = AGSSketchEditor()
+    private var geometryToAdd: AGSGeometry?
+    
+    @IBOutlet weak var sketchToolbar: UIToolbar!
+    @IBOutlet weak var redoBBI: UIBarButtonItem!
+    @IBOutlet weak var undoBBI: UIBarButtonItem!
+    @IBOutlet weak var clearBBI: UIBarButtonItem!
+    
     @IBAction func onAddHazard(_ sender: UIButton) {
-        if !sender.isEnabled {
-            return
-        }
         if sender.titleLabel?.text == "Done" {
-            //disable interaction with map view
-            self.mapView.isUserInteractionEnabled = false
-            //add a feature at the tapped location
-            let hazard = createHazard()
-            NetworkManager.sharedInstance.addHazard(hazard: hazard) { (result, error) in
-                if let error = error {
-
-                } else {
-
-                }
-                //enable interaction with map view
-                self.mapView.isUserInteractionEnabled = true
-                self.addHazardButton.setTitle("Add hazard", for: .normal)
-                self.polygonPoints = []
-            }
+            self.geometryToAdd = self.sketchEditor.geometry
+            performSegue(withIdentifier: "AddVC", sender: nil)
         } else {
-            sender.isEnabled = false
-            sender.alpha = 0.5
+            setupSketchEditor()
+            sender.alpha = 0.75
             sender.setTitle("Done", for: .normal)
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -59,7 +52,53 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
 
         //add the feature layer to the operational layers on map
         map.operationalLayers.add(NetworkManager.sharedInstance.featureLayer)
+        
+        self.mapView.sketchEditor = self.sketchEditor
+        clearSketchEditor()
     }
+
+    // MARK: Sketch Editor
+    func clearSketchEditor() {
+        self.sketchToolbar.isHidden = true
+        self.sketchEditor.stop()
+        self.mapView.isUserInteractionEnabled = true
+        self.addHazardButton.setTitle("Add hazard", for: .normal)
+    }
+    
+    func setupSketchEditor() {
+        self.sketchToolbar.isHidden = false
+        self.sketchEditor.start(with: nil, creationMode: .polygon)
+        NotificationCenter.default.addObserver(self, selector: #selector(MapVC.respondToGeomChanged),
+                                               name: NSNotification.Name.AGSSketchEditorGeometryDidChange, object: nil)
+    }
+    
+    func respondToGeomChanged() {
+        //Enable/disable UI elements appropriately
+        self.undoBBI.isEnabled = self.sketchEditor.undoManager.canUndo
+        self.redoBBI.isEnabled = self.sketchEditor.undoManager.canRedo
+        self.clearBBI.isEnabled = self.sketchEditor.geometry != nil && !self.sketchEditor.geometry!.isEmpty
+    }
+    
+    @IBAction func undo() {
+        if self.sketchEditor.undoManager.canUndo {
+            self.sketchEditor.undoManager.undo()
+        }
+    }
+    
+    @IBAction func redo() {
+        if self.sketchEditor.undoManager.canRedo {
+            self.sketchEditor.undoManager.redo()
+        }
+    }
+    
+    @IBAction func clear() {
+        self.sketchEditor.clearGeometry()
+    }
+    
+    @IBAction func doneSketching() {
+    }
+    // MARK: End sketchEditor
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -69,7 +108,7 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
     func applyEdits() {
         NetworkManager.sharedInstance.featureTable.applyEdits { (featureEditResults: [AGSFeatureEditResult]?, error: Error?) -> Void in
             if let error = error {
-
+                NSLog(error.localizedDescription)
             } else {
                 if let featureEditResults = featureEditResults, featureEditResults.count > 0 && featureEditResults[0].completedWithErrors == false {
                 }
@@ -77,22 +116,15 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
         }
     }
 
-    func createHazard() -> Hazard {
-        let polygon = AGSPolygon(points: polygonPoints)
-        
-        //attributes for the new feature
-        let hazard = Hazard(barrier: polygon,
-                            description: "abc", type: "123")
-        return hazard
-    }
-
     // MARK: - AGSGeoViewTouchDelegate
-
     func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
-        polygonPoints.append(mapPoint)
-        if polygonPoints.count > 2 {
-            addHazardButton.isEnabled = true
-            addHazardButton.alpha = 1
+        // update query
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddVC", let dest = segue.destination as? AddVC {
+            dest.geom = self.geometryToAdd
+            clearSketchEditor()
         }
     }
 }

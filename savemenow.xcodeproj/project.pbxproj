@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		13B5C74C87DB6AC2EB2A4B61 /* Pods_savemenowUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD348C4272D8BDAD9FEC8B52 /* Pods_savemenowUITests.framework */; };
 		1DBDD51BFE89987604998701 /* Pods_savemenow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EA518CB19D2F9019533D063 /* Pods_savemenow.framework */; };
+		7784C35E1F6E463700B10062 /* AddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784C35D1F6E463700B10062 /* AddVC.swift */; };
 		ABC613F51F6DE38C00804BF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC613F41F6DE38C00804BF3 /* AppDelegate.swift */; };
 		ABC613FA1F6DE38C00804BF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABC613F81F6DE38C00804BF3 /* Main.storyboard */; };
 		ABC613FD1F6DE38C00804BF3 /* savemenow.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ABC613FB1F6DE38C00804BF3 /* savemenow.xcdatamodeld */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		24353DC70B3A840184F0361B /* Pods-savemenowUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-savemenowUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-savemenowUITests/Pods-savemenowUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		34DB36C1F58B2571F02FF5BB /* Pods-savemenow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-savemenow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-savemenow/Pods-savemenow.debug.xcconfig"; sourceTree = "<group>"; };
+		7784C35D1F6E463700B10062 /* AddVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVC.swift; sourceTree = "<group>"; };
 		81CAEA6710B1F05F57C14EBB /* Pods-savemenowTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-savemenowTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-savemenowTests/Pods-savemenowTests.release.xcconfig"; sourceTree = "<group>"; };
 		8EA518CB19D2F9019533D063 /* Pods_savemenow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_savemenow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABC613F11F6DE38C00804BF3 /* savemenow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = savemenow.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +142,7 @@
 				F1E720B41F6E06210069D0ED /* Network */,
 				ABC613F41F6DE38C00804BF3 /* AppDelegate.swift */,
 				ABC614251F6E1F1D00804BF3 /* MapVC.swift */,
+				7784C35D1F6E463700B10062 /* AddVC.swift */,
 				ABC613F81F6DE38C00804BF3 /* Main.storyboard */,
 				ABC613FE1F6DE38C00804BF3 /* Assets.xcassets */,
 				ABC614001F6DE38C00804BF3 /* LaunchScreen.storyboard */,
@@ -507,6 +510,7 @@
 				F1E720B91F6E259E0069D0ED /* Hazard.swift in Sources */,
 				ABC613F51F6DE38C00804BF3 /* AppDelegate.swift in Sources */,
 				ABC613FD1F6DE38C00804BF3 /* savemenow.xcdatamodeld in Sources */,
+				7784C35E1F6E463700B10062 /* AddVC.swift in Sources */,
 				F1E720BF1F6E37D90069D0ED /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
