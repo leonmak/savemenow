@@ -17,6 +17,7 @@
 		ABC614021F6DE38C00804BF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABC614001F6DE38C00804BF3 /* LaunchScreen.storyboard */; };
 		ABC6140D1F6DE38C00804BF3 /* savemenowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC6140C1F6DE38C00804BF3 /* savemenowTests.swift */; };
 		ABC614181F6DE38C00804BF3 /* savemenowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC614171F6DE38C00804BF3 /* savemenowUITests.swift */; };
+		F1E720B31F6E061C0069D0ED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E720B21F6E061C0069D0ED /* NetworkManager.swift */; };
 		FF5955EE71CC28EDE4B24FFE /* Pods_savemenowTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C917BEC1F6B198B5AF6B8D /* Pods_savemenowTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		D054075AFCC9CB2271925DFA /* Pods-savemenow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-savemenow.release.xcconfig"; path = "Pods/Target Support Files/Pods-savemenow/Pods-savemenow.release.xcconfig"; sourceTree = "<group>"; };
 		DC2F88DD020828287B37B2F5 /* Pods-savemenowTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-savemenowTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-savemenowTests/Pods-savemenowTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD348C4272D8BDAD9FEC8B52 /* Pods_savemenowUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_savemenowUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1E720B21F6E061C0069D0ED /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = Network/NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 		ABC613F31F6DE38C00804BF3 /* savemenow */ = {
 			isa = PBXGroup;
 			children = (
+				F1E720B41F6E06210069D0ED /* Network */,
 				ABC613F41F6DE38C00804BF3 /* AppDelegate.swift */,
 				ABC613F61F6DE38C00804BF3 /* ViewController.swift */,
 				ABC613F81F6DE38C00804BF3 /* Main.storyboard */,
@@ -166,6 +169,14 @@
 				DD348C4272D8BDAD9FEC8B52 /* Pods_savemenowUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F1E720B41F6E06210069D0ED /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				F1E720B21F6E061C0069D0ED /* NetworkManager.swift */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -469,6 +480,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1E720B31F6E061C0069D0ED /* NetworkManager.swift in Sources */,
 				ABC613F71F6DE38C00804BF3 /* ViewController.swift in Sources */,
 				ABC613F51F6DE38C00804BF3 /* AppDelegate.swift in Sources */,
 				ABC613FD1F6DE38C00804BF3 /* savemenow.xcdatamodeld in Sources */,
@@ -730,6 +742,7 @@
 				ABC6141E1F6DE38C00804BF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ABC6141F1F6DE38C00804BF3 /* Build configuration list for PBXNativeTarget "savemenowTests" */ = {
 			isa = XCConfigurationList;
@@ -738,6 +751,7 @@
 				ABC614211F6DE38C00804BF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ABC614221F6DE38C00804BF3 /* Build configuration list for PBXNativeTarget "savemenowUITests" */ = {
 			isa = XCConfigurationList;
@@ -746,6 +760,7 @@
 				ABC614241F6DE38C00804BF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
