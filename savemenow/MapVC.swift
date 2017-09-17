@@ -14,8 +14,6 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
 
     @IBOutlet private var mapView:AGSMapView!
 
-    private var featureTable:AGSServiceFeatureTable!
-    private var featureLayer:AGSFeatureLayer!
     private var lastQuery:AGSCancelable!
 
     override func viewDidLoad() {
@@ -31,13 +29,8 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
         //set touch delegate on map view as self
         self.mapView.touchDelegate = self
 
-        //instantiate service feature table using the url to the service
-        self.featureTable = AGSServiceFeatureTable(url: URL(string: "https://services5.arcgis.com/P8eoqXPWOi74mr8K/arcgis/rest/services/hazards/FeatureServer/0")!)
-        //create a feature layer using the service feature table
-        self.featureLayer = AGSFeatureLayer(featureTable: self.featureTable)
-
         //add the feature layer to the operational layers on map
-        map.operationalLayers.add(featureLayer)
+        map.operationalLayers.add(NetworkManager.sharedInstance.featureLayer)
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,10 +50,10 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
         //attributes for the new feature
         let featureAttributes = ["description": "testing", "type": "test2"]
         //create a new feature
-        let feature = self.featureTable.createFeature(attributes: featureAttributes, geometry: nil)
+        let feature = NetworkManager.sharedInstance.featureTable.createFeature(attributes: featureAttributes, geometry: nil)
 
         //add the feature to the feature table
-        self.featureTable.add(feature) { [weak self] (error: Error?) -> Void in
+        NetworkManager.sharedInstance.featureTable.add(feature) { [weak self] (error: Error?) -> Void in
             if let error = error {
                 print("Error while adding feature :: \(error)")
             }
@@ -74,7 +67,7 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
     }
 
     func applyEdits() {
-        self.featureTable.applyEdits { (featureEditResults: [AGSFeatureEditResult]?, error: Error?) -> Void in
+        NetworkManager.sharedInstance.featureTable.applyEdits { (featureEditResults: [AGSFeatureEditResult]?, error: Error?) -> Void in
             if let error = error {
 
             }
