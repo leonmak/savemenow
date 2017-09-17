@@ -79,8 +79,7 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
 
     func createHazard() -> Hazard {
         let polygon = AGSPolygon(points: polygonPoints)
-        //normalize geometry
-        let normalizedGeometry = AGSGeometryEngine.normalizeCentralMeridian(of: polygon)!
+        
         //attributes for the new feature
         let hazard = Hazard(barrier: polygon,
                             description: "abc", type: "123")

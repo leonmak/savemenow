@@ -47,8 +47,11 @@ class NetworkManager: Network {
 
     func addHazard(hazard: Hazard, completionHandler: @escaping CompletionHandler) {
         let featureAttributes = hazard.getAttributes()
+        //normalize geometry
+        let normalizedGeometry = AGSGeometryEngine.normalizeCentralMeridian(of: hazard.barrier)!
+
         //create a new feature
-        let feature = NetworkManager.sharedInstance.featureTable.createFeature(attributes: featureAttributes, geometry: nil)
+        let feature = NetworkManager.sharedInstance.featureTable.createFeature(attributes: featureAttributes, geometry: normalizedGeometry)
 
         //add the feature to the feature table
         NetworkManager.sharedInstance.featureTable.add(feature) { [weak self] (error) in
