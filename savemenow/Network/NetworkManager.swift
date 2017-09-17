@@ -9,7 +9,7 @@
 import Foundation
 import ArcGIS
 
-typealias CompletionHandler = (Error?) -> Void
+typealias CompletionHandler = ([AGSFeatureEditResult]?, Error?) -> Void
 
 protocol Network {
 
@@ -20,7 +20,7 @@ protocol Network {
 
     func addHazard(hazard: Hazard, completionHandler: @escaping CompletionHandler)
 
-    func delete(hazard: Hazard, completionHandler: CompletionHandler)
+    func delete(hazard: AGSFeature, completionHandler: @escaping CompletionHandler)
 
     func getRoute()
 
@@ -51,12 +51,22 @@ class NetworkManager: Network {
         let feature = NetworkManager.sharedInstance.featureTable.createFeature(attributes: featureAttributes, geometry: nil)
 
         //add the feature to the feature table
-        NetworkManager.sharedInstance.featureTable.add(feature, completion: completionHandler)
+        NetworkManager.sharedInstance.featureTable.add(feature) { error in completionHandler(nil, error) }
 
     }
 
-    func delete(hazard: Hazard, completionHandler: CompletionHandler) {
-        
+    func delete(hazard: AGSFeature, completionHandler: @escaping CompletionHandler) {
+        self.featureTable.delete(hazard) { [weak self] error in
+            if let error = error {
+                return completionHandler(nil, error)
+            }
+
+            self?.applyEdits(completionHandler: completionHandler)
+        }
+    }
+
+    private func applyEdits(completionHandler: @escaping CompletionHandler) {
+        self.featureTable.applyEdits { (result, error) in completionHandler(result, error) }
     }
 
     func getRoute() {
