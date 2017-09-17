@@ -26,8 +26,8 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
             //disable interaction with map view
             self.mapView.isUserInteractionEnabled = false
             //add a feature at the tapped location
-            let hazard = createHazard(at: mapPoint)
-            NetworkManager.sharedInstance.addHazard(hazard: hazard) { (error) in
+            let hazard = createHazard()
+            NetworkManager.sharedInstance.addHazard(hazard: hazard) { (result, error) in
                 if let error = error {
 
                 } else {
@@ -35,10 +35,13 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
                 }
                 //enable interaction with map view
                 self.mapView.isUserInteractionEnabled = true
+                self.addHazardButton.setTitle("Add hazard", for: .normal)
+                self.polygonPoints = []
             }
         } else {
             sender.isEnabled = false
-            sender.titleLabel?.text = "Done"
+            sender.alpha = 0.5
+            sender.setTitle("Done", for: .normal)
         }
     }
     override func viewDidLoad() {
@@ -79,7 +82,8 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
         //normalize geometry
         let normalizedGeometry = AGSGeometryEngine.normalizeCentralMeridian(of: polygon)!
         //attributes for the new feature
-        let hazard = Hazard(description: "testing", type: "test2")
+        let hazard = Hazard(barrier: polygon,
+                            description: "abc", type: "123")
         return hazard
     }
 
@@ -89,6 +93,7 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
         polygonPoints.append(mapPoint)
         if polygonPoints.count > 2 {
             addHazardButton.isEnabled = true
+            addHazardButton.alpha = 1
         }
     }
 }
