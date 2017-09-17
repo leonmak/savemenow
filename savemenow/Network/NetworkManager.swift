@@ -45,8 +45,7 @@ class NetworkManager: Network {
     }
 
     func addHazard(hazard: Hazard, completionHandler: @escaping CompletionHandler) {
-        let featureAttributes = ["description": hazard.description,
-                                "type": hazard.type]
+        let featureAttributes = hazard.getAttributes()
         //create a new feature
         let feature = NetworkManager.sharedInstance.featureTable.createFeature(attributes: featureAttributes, geometry: nil)
 
