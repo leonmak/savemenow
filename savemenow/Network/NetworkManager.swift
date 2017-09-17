@@ -66,13 +66,10 @@ class NetworkManager: Network {
                 return completionHandler(nil, error)
             }
 
-            self?.applyEdits(completionHandler: completionHandler)
+            self?.featureTable.applyEdits { (result, error) in completionHandler(result, error) }
         }
     }
 
-    private func applyEdits(completionHandler: @escaping CompletionHandler) {
-        self.featureTable.applyEdits { (result, error) in completionHandler(result, error) }
-    }
 
     func getRoute() {
 
