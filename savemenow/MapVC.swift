@@ -12,10 +12,35 @@ import MapKit
 
 class MapVC: UIViewController, AGSGeoViewTouchDelegate {
 
+    @IBOutlet var addHazardButton: UIButton!
     @IBOutlet private var mapView: AGSMapView!
+    var polygonPoints: [AGSPoint] = []
 
     private var lastQuery: AGSCancelable!
 
+    @IBAction func onAddHazard(_ sender: UIButton) {
+        if !sender.isEnabled {
+            return
+        }
+        if sender.titleLabel?.text == "Done" {
+            //disable interaction with map view
+            self.mapView.isUserInteractionEnabled = false
+            //add a feature at the tapped location
+            let hazard = createHazard(at: mapPoint)
+            NetworkManager.sharedInstance.addHazard(hazard: hazard) { (error) in
+                if let error = error {
+
+                } else {
+
+                }
+                //enable interaction with map view
+                self.mapView.isUserInteractionEnabled = true
+            }
+        } else {
+            sender.isEnabled = false
+            sender.titleLabel?.text = "Done"
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,7 +63,7 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-       func applyEdits() {
+    func applyEdits() {
         NetworkManager.sharedInstance.featureTable.applyEdits { (featureEditResults: [AGSFeatureEditResult]?, error: Error?) -> Void in
             if let error = error {
 
@@ -49,9 +74,10 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
         }
     }
 
-    func createHazard(at mappoint: AGSPoint) -> Hazard {
+    func createHazard() -> Hazard {
+        let polygon = AGSPolygon(points: polygonPoints)
         //normalize geometry
-        let normalizedGeometry = AGSGeometryEngine.normalizeCentralMeridian(of: mappoint)!
+        let normalizedGeometry = AGSGeometryEngine.normalizeCentralMeridian(of: polygon)!
         //attributes for the new feature
         let hazard = Hazard(description: "testing", type: "test2")
         return hazard
@@ -60,20 +86,9 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
     // MARK: - AGSGeoViewTouchDelegate
 
     func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
-        //disable interaction with map view
-        self.mapView.isUserInteractionEnabled = false
-
-        //add a feature at the tapped location
-        let hazard = createHazard(at: mapPoint)
-        NetworkManager.sharedInstance.addHazard(hazard: hazard) { (error) in
-            if let error = error {
-
-            } else {
-
-            }
-            //enable interaction with map view
-            self.mapView.isUserInteractionEnabled = true
+        polygonPoints.append(mapPoint)
+        if polygonPoints.count > 2 {
+            addHazardButton.isEnabled = true
         }
     }
-
 }
