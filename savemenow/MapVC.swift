@@ -12,9 +12,9 @@ import MapKit
 
 class MapVC: UIViewController, AGSGeoViewTouchDelegate {
 
-    @IBOutlet private var mapView:AGSMapView!
+    @IBOutlet private var mapView: AGSMapView!
 
-    private var lastQuery:AGSCancelable!
+    private var lastQuery: AGSCancelable!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,51 +38,42 @@ class MapVC: UIViewController, AGSGeoViewTouchDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    func addFeature(at mappoint:AGSPoint) {
-        //show the progress hud
-        
-        //disable interaction with map view
-        self.mapView.isUserInteractionEnabled = false
-
-        //normalize geometry
-        let normalizedGeometry = AGSGeometryEngine.normalizeCentralMeridian(of: mappoint)!
-
-        //attributes for the new feature
-        let featureAttributes = ["description": "testing", "type": "test2"]
-        //create a new feature
-        let feature = NetworkManager.sharedInstance.featureTable.createFeature(attributes: featureAttributes, geometry: nil)
-
-        //add the feature to the feature table
-        NetworkManager.sharedInstance.featureTable.add(feature) { [weak self] (error: Error?) -> Void in
-            if let error = error {
-                print("Error while adding feature :: \(error)")
-            }
-            else {
-                //applied edits on success
-                self?.applyEdits()
-            }
-            //enable interaction with map view
-            self?.mapView.isUserInteractionEnabled = true
-        }
-    }
-
-    func applyEdits() {
+       func applyEdits() {
         NetworkManager.sharedInstance.featureTable.applyEdits { (featureEditResults: [AGSFeatureEditResult]?, error: Error?) -> Void in
             if let error = error {
 
-            }
-            else {
-                if let featureEditResults = featureEditResults , featureEditResults.count > 0 && featureEditResults[0].completedWithErrors == false {
+            } else {
+                if let featureEditResults = featureEditResults, featureEditResults.count > 0 && featureEditResults[0].completedWithErrors == false {
                 }
             }
         }
     }
 
-    //MARK: - AGSGeoViewTouchDelegate
+    func createHazard(at mappoint: AGSPoint) -> Hazard {
+        //normalize geometry
+        let normalizedGeometry = AGSGeometryEngine.normalizeCentralMeridian(of: mappoint)!
+        //attributes for the new feature
+        let hazard = Hazard(description: "testing", type: "test2")
+        return hazard
+    }
+
+    // MARK: - AGSGeoViewTouchDelegate
 
     func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
+        //disable interaction with map view
+        self.mapView.isUserInteractionEnabled = false
+
         //add a feature at the tapped location
-        self.addFeature(at: mapPoint)
+        let hazard = createHazard(at: mapPoint)
+        NetworkManager.sharedInstance.addHazard(hazard: hazard) { (error) in
+            if let error = error {
+
+            } else {
+
+            }
+            //enable interaction with map view
+            self.mapView.isUserInteractionEnabled = true
+        }
     }
 
 }

@@ -13,12 +13,12 @@ typealias CompletionHandler = (Error?) -> Void
 
 protocol Network {
 
-    var featureTable:AGSServiceFeatureTable! {get set}
-    var featureLayer:AGSFeatureLayer! {get set}
+    var featureTable: AGSServiceFeatureTable! {get set}
+    var featureLayer: AGSFeatureLayer! {get set}
 
     func getHazards()
 
-    func addHazard(hazard: Hazard, completionHandler: CompletionHandler)
+    func addHazard(hazard: Hazard, completionHandler: @escaping CompletionHandler)
 
     func delete(hazard: Hazard, completionHandler: CompletionHandler)
 
@@ -44,7 +44,14 @@ class NetworkManager: Network {
 
     }
 
-    func addHazard(hazard: Hazard, completionHandler: CompletionHandler) {
+    func addHazard(hazard: Hazard, completionHandler: @escaping CompletionHandler) {
+        let featureAttributes = ["description": hazard.description,
+                                "type": hazard.type]
+        //create a new feature
+        let feature = NetworkManager.sharedInstance.featureTable.createFeature(attributes: featureAttributes, geometry: nil)
+
+        //add the feature to the feature table
+        NetworkManager.sharedInstance.featureTable.add(feature, completion: completionHandler)
 
     }
 
