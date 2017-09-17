@@ -19,6 +19,7 @@
 		ABC614261F6E1F1D00804BF3 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC614251F6E1F1D00804BF3 /* MapVC.swift */; };
 		F1E720B31F6E061C0069D0ED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E720B21F6E061C0069D0ED /* NetworkManager.swift */; };
 		F1E720B91F6E259E0069D0ED /* Hazard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E720B81F6E259E0069D0ED /* Hazard.swift */; };
+		F1E720BF1F6E37D90069D0ED /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E720BE1F6E37D90069D0ED /* Constants.swift */; };
 		FF5955EE71CC28EDE4B24FFE /* Pods_savemenowTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C917BEC1F6B198B5AF6B8D /* Pods_savemenowTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		DD348C4272D8BDAD9FEC8B52 /* Pods_savemenowUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_savemenowUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1E720B21F6E061C0069D0ED /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = Network/NetworkManager.swift; sourceTree = "<group>"; };
 		F1E720B81F6E259E0069D0ED /* Hazard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hazard.swift; path = Models/Hazard.swift; sourceTree = "<group>"; };
+		F1E720BE1F6E37D90069D0ED /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Constants/Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 		ABC613F31F6DE38C00804BF3 /* savemenow */ = {
 			isa = PBXGroup;
 			children = (
+				F1E720BD1F6E37C70069D0ED /* Constants */,
 				F1E720B71F6E25870069D0ED /* Models */,
 				F1E720B41F6E06210069D0ED /* Network */,
 				ABC613F41F6DE38C00804BF3 /* AppDelegate.swift */,
@@ -188,6 +191,14 @@
 				F1E720B81F6E259E0069D0ED /* Hazard.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		F1E720BD1F6E37C70069D0ED /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				F1E720BE1F6E37D90069D0ED /* Constants.swift */,
+			);
+			name = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -496,6 +507,7 @@
 				F1E720B91F6E259E0069D0ED /* Hazard.swift in Sources */,
 				ABC613F51F6DE38C00804BF3 /* AppDelegate.swift in Sources */,
 				ABC613FD1F6DE38C00804BF3 /* savemenow.xcdatamodeld in Sources */,
+				F1E720BF1F6E37D90069D0ED /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

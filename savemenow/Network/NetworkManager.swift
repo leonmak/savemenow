@@ -10,6 +10,7 @@ import Foundation
 import ArcGIS
 
 typealias CompletionHandler = ([AGSFeatureEditResult]?, Error?) -> Void
+typealias RoutingCompletionHandler = (AGSRouteResult?,  Error?) -> Void
 
 protocol Network {
 
@@ -22,19 +23,19 @@ protocol Network {
 
     func delete(hazard: AGSFeature, completionHandler: @escaping CompletionHandler)
 
-    func getRoute()
-
+    func getRoute(fromRouteParameters: AGSRouteParameters, completionHandler: @escaping RoutingCompletionHandler)
 }
 
 class NetworkManager: Network {
 
+    let routeTask = AGSRouteTask(url: Constants.routingURL)
     static let sharedInstance = NetworkManager()
     var featureTable: AGSServiceFeatureTable!
     var featureLayer: AGSFeatureLayer!
 
     private init() {
         //instantiate service feature table using the url to the service
-        self.featureTable = AGSServiceFeatureTable(url: URL(string: "https://services5.arcgis.com/P8eoqXPWOi74mr8K/arcgis/rest/services/hazards/FeatureServer/0")!)
+        self.featureTable = AGSServiceFeatureTable(url: Constants.hazardURL)
         //create a feature layer using the service feature table
         self.featureLayer = AGSFeatureLayer(featureTable: self.featureTable)
 
@@ -60,13 +61,13 @@ class NetworkManager: Network {
                 return completionHandler(nil, error)
             }
 
-            self?.featureTable.applyEdits { (result, error) in completionHandler(result, error) }
+            self?.featureTable.applyEdits(completion: completionHandler)
         }
     }
 
 
-    func getRoute() {
-
+    func getRoute(fromRouteParameters routeParameters: AGSRouteParameters, completionHandler: @escaping RoutingCompletionHandler) {
+        self.routeTask.solveRoute(with: routeParameters, completion: completionHandler)
     }
 
 }
